@@ -26,14 +26,18 @@ struct ContentView: View {
                             Text("\($0) people")
                         }
                     }
-                    Picker("Enter tip ammount", selection: $tipPercentage){
-                        
-                    }
                 }
-            }.navigationTitle("We Split")
+                    Section("Select Tip Amount"){
+                        Picker("Enter tip ammount", selection: $tipPercentage){
+                            ForEach(tipPercentages, id: \.self){
+                                Text($0, format: .percent)
+                            }
+                        }.pickerStyle(.segmented)
+                    }
+                }.navigationTitle("We Split")
+            }
         }
     }
-}
 #Preview {
     ContentView()
 }
